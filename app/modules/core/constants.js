@@ -5,6 +5,7 @@
 import { combineReducers } from 'redux';
 import { router } from 'redux-ui-router';
 import createLogger from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 
 export default (ngModule) => {
   ngModule
@@ -14,5 +15,6 @@ export default (ngModule) => {
     .constant('loggerCreator', {
       createLogger: createLogger
     })
+    .constant('thunkMiddleware', thunkMiddleware)
     .constant('router', router);
 }

@@ -5,12 +5,16 @@
 import angular from 'angular';
 
 import core from 'modules/core';
+import common from 'modules/common';
 import admin from 'modules/admin';
+import market from 'modules/market';
 
 const MODULE_NAME = 'marketJs';
 
 export default angular
   .module(MODULE_NAME, [
     core,
-    admin
+    common,
+    admin,
+    market
   ]);

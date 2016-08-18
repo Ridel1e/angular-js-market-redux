@@ -1,0 +1,11 @@
+<nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+        <li ng-repeat="nav in vm.navs" ng-class="{active: vm.isActiveState(nav.state)}">
+            <a ui-sref="{{nav.state}}">
+                <strong>
+                    {{ nav.name }}
+                </strong>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -2,16 +2,17 @@
  * Created by ridel1e on 15/08/16.
  */
 
-const config = ($ngReduxProvider, reducersCombiner, router, loggerCreator) => {
+const config = ($ngReduxProvider, reducersCombiner, router, products, loggerCreator, thunkMiddleware) => {
   let rootReducer = reducersCombiner.combineReducers({
-    router: router
+    router: router,
+    products: products
   });
 
-  let logger = loggerCreator
+  let loggerMiddleware = loggerCreator
     .createLogger({level: 'info', collapsed: true});
 
   $ngReduxProvider
-    .createStoreWith(rootReducer, ['ngUiRouterMiddleware', logger])
+    .createStoreWith(rootReducer, ['ngUiRouterMiddleware', thunkMiddleware, loggerMiddleware])
 };
 
 config
@@ -19,7 +20,9 @@ config
     '$ngReduxProvider',
     'reducersCombiner',
     'router',
-    'loggerCreator'
+    'products',
+    'loggerCreator',
+    'thunkMiddleware'
   ];
 
 export default (ngModule) => {

@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Angular Market Redux</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
 </head>
 <body ng-app="marketJs">
-    <ui-view></ui-view>
+    <market-top-nav></market-top-nav>
+    <br>
+    <main class="container">
+        <ui-view></ui-view>
+    </main>
 
     <script src="build/bundle.js"></script>
 </body>
