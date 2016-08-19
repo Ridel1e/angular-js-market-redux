@@ -8,9 +8,32 @@ const REDUCER_NAME = 'products';
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-   case actionTypes.GET_PRODUCTS_SUCCESS:
+    case actionTypes.GET_PRODUCTS_SUCCESS:
       return action.payload;
-   default:
+
+    case actionTypes.REMOVE_PRODUCT_SUCCESS:
+      return state
+        .filter(product => {
+          return product._id !== action.payload._id
+        });
+
+    case actionTypes.ADD_PRODUCT_SUCCESS:
+      return [
+        ...state,
+        action.payload
+      ];
+
+    case actionTypes.EDIT_PRODUCT_SUCCESS:
+      return state
+        .map(product => {
+          if(product._id === action.payload._id) {
+            return action.payload
+          }
+
+          return product;
+        });
+
+    default:
       return state;
   }
 };

@@ -3,7 +3,9 @@
  */
 
 import productTable from './product-table';
+import selectedProductFrom from './selected-product-form';
 
 export default (ngModule) => {
   productTable(ngModule);
+  selectedProductFrom(ngModule);
 };

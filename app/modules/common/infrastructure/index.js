@@ -3,7 +3,9 @@
  */
 
 import product from './product'
+import selectedProduct from './selected-product';
 
 export default (ngModule) => {
   product(ngModule);
+  selectedProduct(ngModule);
 };

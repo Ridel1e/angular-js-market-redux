@@ -1,0 +1,85 @@
+<form class="center-block product-form" name="vm.productForm">
+    <div class="row">
+        <h3 class="center-block" ng-hide="vm.isEditMode()">Product Creation Form</h3>
+        <h3 class="center-block" ng-show="vm.isEditMode()">Product Edition Form</h3>
+    </div>
+    <div class="form-group row">
+        <div class="row">
+            <label for="productName" class="form-control-label col-md-2">Name: </label>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text"
+                       id="productName"
+                       name="productName"
+                       class="col-md-8 col-md-offset-2 form-control"
+                       ng-model="vm.selectedProduct.name"
+                       />
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="row">
+            <label for="productDescription" class="form-control-label col-md-2">Description: </label>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <textarea id="productDescription"
+                          name="productDescription"
+                          cols="30" rows="5"
+                          class="col-md-8 col-md-offset-2 form-control"
+                          ng-model="vm.selectedProduct.description"
+                />
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="row">
+            <label for="productPrice" class="form-control-label col-md-2">Price: </label>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <input type="number"
+                       step="any"
+                       id="productPrice"
+                       name="productPrice"
+                       class="col-md-8 col-md-offset-2 form-control"
+                       ng-model="vm.selectedProduct.price"
+                />
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="row">
+            <label for="productAmount" class="form-control-label col-md-2">Amount: </label>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <input type="number"
+                       id="productAmount"
+                       name="productAmount"
+                       class="col-md-8 col-md-offset-2 form-control"
+                       ng-model="vm.selectedProduct.amount"
+                />
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <button class="btn btn-primary col-md-offset-5"
+                ng-click="vm.saveProduct({product: vm.selectedProduct})"
+                ng-show="vm.selectedProductIsEmpty()">
+            Save
+        </button>
+        <button class="btn btn-primary col-md-offset-4"
+                ng-click="vm.editProduct({product: vm.selectedProduct})"
+                ng-hide="vm.selectedProductIsEmpty()">
+            Edit
+        </button>
+        <button class="btn btn-default"
+                ng-click="vm.cancel({product: {}})"
+                ng-hide="vm.selectedProductIsEmpty()">
+            Cancel
+        </button>
+    </div>
+</form>

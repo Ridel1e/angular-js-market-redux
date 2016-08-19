@@ -1,0 +1,19 @@
+<table class="table entity-table" ng-if="!$isEmpty(vm.items)">
+    <thead class="entity-table__head">
+    <tr>
+        <th ng-repeat="column in vm.columns">{{ column }}</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in vm.items" class="entity-table__row"
+        ng-click="vm.onItemSelect({item: item})"
+        ng-class="{active: vm.isSelectedItem({item: item})}">
+        <th ng-repeat="column in vm.columns">
+            {{ item[column] }}
+        </th>
+        <th><i class="glyphicon glyphicon-trash entity-table__delete" ng-click="vm.removeItem({item: item})"></i></th>
+    </tr>
+    </tbody>
+</table>
+

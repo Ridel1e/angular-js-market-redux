@@ -2,12 +2,13 @@
  * Created by ridel1e on 15/08/16.
  */
 
-const config = ($ngReduxProvider, reducersCombiner, router, products, loggerCreator, thunkMiddleware) => {
+const config = ($ngReduxProvider, reducersCombiner, router, products, selectedProduct, loggerCreator, thunkMiddleware) => {
   let rootReducer = reducersCombiner.combineReducers({
     router: router,
-    products: products
+    products: products,
+    selectedProduct: selectedProduct
   });
-
+  
   let loggerMiddleware = loggerCreator
     .createLogger({level: 'info', collapsed: true});
 
@@ -21,6 +22,7 @@ config
     'reducersCombiner',
     'router',
     'products',
+    'selectedProduct',
     'loggerCreator',
     'thunkMiddleware'
   ];

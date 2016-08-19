@@ -9,7 +9,7 @@ class ContainerController {
     let unsubscribe = $ngRedux
       .connect(this.mapStateToThis, actions)(this.state);
 
-    $scope.$on('$destroy', unsubscribe);   
+    $scope.$on('$destroy', unsubscribe);
   }
 }
 
