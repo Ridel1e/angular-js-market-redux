@@ -16,7 +16,7 @@ const routes = ($stateProvider) => {
     })
     .state('admin.products', {
       url: '/products',
-      templateUrl: './app/pages/admin-products.html',
+      templateUrl: './app/modules/admin/pages/admin-products.html',
       resolve: {
         products: ['productActions', '$ngRedux', function (productActions, $ngRedux) {
           let actions = {};
@@ -29,7 +29,7 @@ const routes = ($stateProvider) => {
     })
     .state('admin.orders', {
       url: '/orders',
-      templateUrl: './app/pages/admin-orders.html'
+      templateUrl: './app/pages/modules/admin/pages//admin-orders.html'
     });
 };
 

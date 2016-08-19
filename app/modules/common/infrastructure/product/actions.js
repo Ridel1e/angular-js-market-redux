@@ -3,9 +3,9 @@
  */
 
 import * as actionTypes from './action-types';
-import fetch from 'isomorphic-fetch';
 
-const service = ($http) => {
+const service = (selectedProductActions, ProductApi) => {
+
   let getProductsRequest = () => {
     return {
       type: actionTypes.GET_PRODUCTS_REQUEST,
@@ -32,16 +32,10 @@ const service = ($http) => {
     return dispatch => {
       dispatch(getProductsRequest());
 
-      return $http
-        .get('/products/_all_docs?include_docs=true')
-        .then(response => {
-          return response.data;
-        })
+      return ProductApi
+        .loadAll()
         .then(products => {
-          return productsFormatter(products.rows);
-        })
-        .then(formattedProducts => {
-          dispatch(getProductsSuccess(formattedProducts))
+          dispatch(getProductsSuccess(products))
         })
         .catch(error => {
           dispatch(getProductError(error));
@@ -77,16 +71,11 @@ const service = ($http) => {
     return dispatch => {
       dispatch(saveProductRequest(product));
 
-      $http
-        .post('/products', product)
-        .then(response => {
-          return Object.assign({}, product, {
-            _id: response.data.id,
-            _rev: response.data.rev
-          })
-        })
+      return ProductApi
+        .save(product)
         .then(newProduct => {
-          dispatch(saveProductSuccess(newProduct))
+          dispatch(saveProductSuccess(newProduct));
+          dispatch(selectedProductActions.selectProduct({}))
         })
     }
   };
@@ -109,8 +98,8 @@ const service = ($http) => {
     return dispatch => {
       dispatch(removeProductRequest(product));
 
-      return $http
-        .delete('/products/' + product._id + '?rev=' + product._rev)
+      return ProductApi
+        .remove(product)
         .then(() => {
           dispatch(removeProductSuccess(product))
         });
@@ -135,15 +124,11 @@ const service = ($http) => {
     return dispatch => {
       dispatch(editProductRequest(product));
 
-      return $http
-        .put('/products/' + product._id, product)
-        .then(response => {
-          return Object.assign({}, product, {
-            _rev: response.data.rev
-          })
-        })
+      return ProductApi
+        .update(product)
         .then(updatedProduct => {
           dispatch(editProductSuccess(updatedProduct));
+          dispatch(selectedProductActions.selectProduct({}));
         })
     };
   };
@@ -157,7 +142,7 @@ const service = ($http) => {
 };
 
 service
-  .$inject = ['$http'];
+  .$inject = ['selectedProductActions', 'ProductApi'];
 
 
 export default (ngModule) => {
