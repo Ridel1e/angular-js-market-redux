@@ -2,10 +2,11 @@
  * Created by ridel1e on 15/08/16.
  */
 
-const config = ($ngReduxProvider, reducersCombiner, router, products, selectedProduct, loggerCreator, thunkMiddleware) => {
+const config = ($ngReduxProvider, reducersCombiner, router, products, orders, selectedProduct, loggerCreator, thunkMiddleware) => {
   let rootReducer = reducersCombiner.combineReducers({
     router: router,
     products: products,
+    orders: orders,
     selectedProduct: selectedProduct
   });
   
@@ -22,6 +23,7 @@ config
     'reducersCombiner',
     'router',
     'products',
+    'orders',
     'selectedProduct',
     'loggerCreator',
     'thunkMiddleware'

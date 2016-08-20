@@ -11,9 +11,17 @@ let selectProduct = (product) => {
   }
 };
 
+let resetProductSelection = () => {
+  return {
+    type: actionTypes.RESET_PRODUCT_SELECTION,
+    payload: {}
+  };
+};
+
 export default (ngModule) => {
   ngModule
     .constant('selectedProductActions', {
+      resetProductSelection: resetProductSelection,
       selectProduct: selectProduct
     })
 };

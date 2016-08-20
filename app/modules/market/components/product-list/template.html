@@ -1,0 +1,35 @@
+<div class="row product-list">
+    <div class="col-md-12 product" ng-repeat="product in vm.products">
+        <div class="product__name row">
+            <strong class="col-md-4">{{ product.name }}</strong>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                {{ product.description }}
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <i ng-show="product.amount > 0">in stock</i>
+                        <i ng-hide="product.amount > 0">out of stock</i>
+                    </div>
+                    <!--<i class="product__in-cart-status">-->
+                       <!--&lt;!&ndash;ng-show="vm.isProductInCart(product)">&ndash;&gt;-->
+                        <!--already in cart-->
+                    <!--</i>-->
+                    <div class="col-md-12 product__price">
+                        <i class="glyphicon glyphicon-shopping-cart product__cart"
+                           ng-show="product.amount > 0"
+                           ng-click="vm.addToCart(product)">
+                        </i>
+                        <strong>
+                            {{ product.price }}$
+                        </strong>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,17 +1,14 @@
 /**
- * Created by ridel1e on 18/08/16.
+ * Created by ridel1e on 20/08/16.
  */
 
 import * as actionTypes from './action-types';
 
-const REDUCER_NAME = 'selectedProduct';
+const REDUCER_NAME = 'orders';
 
-const reducer = (state = {}, action) => {
+const reducer = (state = [], action) => {
   switch (action.type) {
-    case actionTypes.SELECT_PRODUCT:
-      return action.payload;
-
-    case actionTypes.RESET_PRODUCT_SELECTION:
+    case actionTypes.FETCH_ORDERS_SUCCESS:
       return action.payload;
 
     default:
@@ -22,4 +19,4 @@ const reducer = (state = {}, action) => {
 export default (ngModule) => {
   ngModule
     .constant(REDUCER_NAME, reducer);
-};
+}

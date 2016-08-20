@@ -7,4 +7,10 @@ import module from './module';
 import routes from './routes';
 routes(module);
 
+import containers from './containers';
+containers(module);
+
+import components from './components';
+components(module);
+
 export default module.name;

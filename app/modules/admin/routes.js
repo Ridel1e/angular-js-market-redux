@@ -20,6 +20,7 @@ const routes = ($stateProvider) => {
       resolve: {
         products: ['productActions', '$ngRedux', function (productActions, $ngRedux) {
           let actions = {};
+          
           $ngRedux
             .connect(null, productActions)(actions);
 
@@ -29,7 +30,17 @@ const routes = ($stateProvider) => {
     })
     .state('admin.orders', {
       url: '/orders',
-      templateUrl: './app/pages/modules/admin/pages//admin-orders.html'
+      templateUrl: './app/modules/admin/pages/admin-orders.html',
+      resolve: {
+        orders: ['orderActions', '$ngRedux', function (orderActions, $ngRedux) {
+          let actions = {};
+
+          $ngRedux
+            .connect(null, orderActions)(actions);
+
+          return actions.fetchOrders();
+        }]
+      }
     });
 };
 

@@ -2,8 +2,6 @@
  * Created by ridel1e on 16/08/16.
  */
 
-import controller from './controller';
-
 const COMPONENT_NAME = 'topNav';
 
 const component = {
@@ -14,7 +12,12 @@ const component = {
     navs: '<'
   },
 
-  controller: controller,
+  controller: function () {
+    this.isActiveState = function (state) {
+      return this.currentState.name.substring(0, this.currentState.name.indexOf('.'))
+        === state.substring(0, state.indexOf('.'));
+    }
+  },
   controllerAs: 'vm'
 };
 

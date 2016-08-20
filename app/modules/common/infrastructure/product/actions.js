@@ -74,8 +74,8 @@ const service = (selectedProductActions, ProductApi) => {
       return ProductApi
         .save(product)
         .then(newProduct => {
+          dispatch(selectedProductActions.resetProductSelection());
           dispatch(saveProductSuccess(newProduct));
-          dispatch(selectedProductActions.selectProduct({}))
         })
     }
   };
@@ -127,17 +127,17 @@ const service = (selectedProductActions, ProductApi) => {
       return ProductApi
         .update(product)
         .then(updatedProduct => {
+          dispatch(selectedProductActions.resetProductSelection());
           dispatch(editProductSuccess(updatedProduct));
-          dispatch(selectedProductActions.selectProduct({}));
         })
     };
   };
 
   return {
+    editProduct: editProduct,
     fetchProducts: fetchProducts,
     removeProduct: removeProduct,
-    saveProduct: saveProduct,
-    editProduct: editProduct
+    saveProduct: saveProduct
   }
 };
 

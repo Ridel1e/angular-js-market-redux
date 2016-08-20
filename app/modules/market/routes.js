@@ -5,8 +5,23 @@
 const routes = ($stateProvider) => {
   $stateProvider
     .state('market', {
+      abstract: true,
+      template:
+        '<h2>Market</h2>' +
+          '<ui-view></ui-view>'
+    })
+    .state('market.showcase', {
       url: '/',
-      template: '<h2>Market</h2>'
+      templateUrl: './app/modules/market/pages/market-showcase.html',
+      resolve: {
+        products: ['productActions', '$ngRedux', function (productActions, $ngRedux) {
+          let actions = {};
+          $ngRedux
+            .connect(null, productActions)(actions);
+
+          return actions.fetchProducts();
+        }]
+      }
     });
 };
 

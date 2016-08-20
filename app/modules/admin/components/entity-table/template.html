@@ -7,8 +7,8 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in vm.items" class="entity-table__row"
-        ng-click="vm.onItemSelect({item: item})"
-        ng-class="{active: vm.isSelectedItem({item: item})}">
+        ng-click="vm.selectItem({item: item})"
+        ng-class="{active: vm.isSelectedItem(item)}">
         <th ng-repeat="column in vm.columns">
             {{ item[column] }}
         </th>

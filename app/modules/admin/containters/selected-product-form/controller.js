@@ -9,7 +9,7 @@ class SelectedProductFormController extends ContainerController {
     super($ngRedux, $scope, {
       saveProduct: productActions.saveProduct,
       editProduct: productActions.editProduct,
-      selectProduct: selectedProductActions.selectProduct
+      resetSelection: selectedProductActions.resetProductSelection
     });
   }
 

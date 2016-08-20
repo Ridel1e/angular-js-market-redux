@@ -9,7 +9,8 @@ const SERVICE_NAME = 'ProductApi';
 class ProductApi extends BaseApi {
   constructor($http) {
     super($http);
-    this._url = '/products'
+    this._url = '/products';
+    this._idAttribute = 'id';
   }
 }
 

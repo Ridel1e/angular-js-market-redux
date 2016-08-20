@@ -10,7 +10,7 @@ class MarketTopNavController extends ContainerController {
 
     this.marketNavs = [{
       name: 'Shop',
-      state: 'market'
+      state: 'market.showcase'
     }, {
       name: 'Admin',
       state: 'admin.products'

@@ -1,0 +1,7 @@
+/**
+ * Created by ridel1e on 20/08/16.
+ */
+
+export const FETCH_ORDERS_REQEST = 'FETCH_ORDERS_REQEST';
+export const FETCH_ORDERS_SUCCESS = 'FETCH_ORDERS_SUCCESS';
+export const FETCH_ORDERS_ERROR = 'FETCH_ORDERS_ERROR';

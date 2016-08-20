@@ -14,7 +14,7 @@ const reducer = (state = [], action) => {
     case actionTypes.REMOVE_PRODUCT_SUCCESS:
       return state
         .filter(product => {
-          return product._id !== action.payload._id
+          return product.id !== action.payload.id
         });
 
     case actionTypes.ADD_PRODUCT_SUCCESS:
@@ -26,7 +26,7 @@ const reducer = (state = [], action) => {
     case actionTypes.EDIT_PRODUCT_SUCCESS:
       return state
         .map(product => {
-          if(product._id === action.payload._id) {
+          if(product.id === action.payload.id) {
             return action.payload
           }
 

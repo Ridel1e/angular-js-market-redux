@@ -16,7 +16,7 @@ const component = {
 
   controller: function () {
     this.selectedProductIsEmpty = function () {
-      return Object.keys(this.selectedProduct).length === 0;
+      return this.selectedProduct.id === undefined;
     };
   },
   controllerAs: 'vm'

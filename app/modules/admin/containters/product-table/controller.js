@@ -26,10 +26,6 @@ class ProductTableController extends ContainerController {
       selectedProduct: state.selectedProduct
     }
   }
-  
-  isSelectedProduct(product) {
-    return this.state.selectedProduct._id === product._id;
-  }
 }
 
 ProductTableController

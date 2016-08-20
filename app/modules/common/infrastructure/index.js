@@ -4,8 +4,10 @@
 
 import product from './product'
 import selectedProduct from './selected-product';
+import order from './order';
 
 export default (ngModule) => {
   product(ngModule);
   selectedProduct(ngModule);
+  order(ngModule);
 };

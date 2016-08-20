@@ -8,13 +8,18 @@ const component = {
   templateUrl: './app/modules/admin/components/entity-table/template.html',
   
   bindings: {
-    items: '<',
     columns: '<',
-    onItemSelect: '&',
-    isSelectedItem: '&',
-    removeItem: '&onItemRemoveButtonClick'
+    items: '<',
+    removeItem: '&onItemRemoveButtonClick',
+    selectedItem: '=',
+    selectItem: '&onItemSelect'
   },
-
+  
+  controller: function () {
+    this.isSelectedItem = function (item) {
+      return this.selectedItem.id === item.id;
+    }
+  },
   controllerAs: 'vm'
 };
 

@@ -1,13 +1,13 @@
 /**
- * Created by ridel1e on 18/08/16.
+ * Created by ridel1e on 20/08/16.
  */
 
 import controller from './controller';
 
-const CONTAINER_NAME ='orderTable';
+const CONTAINER_NAME = 'showcaseProductList';
 
 const container = {
-  template: '<entity-table items="vm.state.orders" columns="vm.orderTableColumns"></entity-table>',
+  template: '<product-list products="vm.state.products"></product-list>',
 
   controller: controller,
   controllerAs: 'vm'
