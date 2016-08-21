@@ -4,97 +4,95 @@
 
 import * as actionTypes from './action-types';
 
-const service = (selectedProductActions, ProductApi) => {
+const ACTIONS_NAME = 'productActions';
 
-  let getProductsRequest = () => {
-    return {
-      type: actionTypes.GET_PRODUCTS_REQUEST,
-      payload: {}
-    }
+const actions = (selectedProductActions, ProductApi) => {
+
+  return {
+    editProduct: editProduct,
+    fetchProducts: fetchProducts,
+    removeProduct: removeProduct,
+    saveProduct: saveProduct
   };
-
-  let getProductsSuccess = (products) => {
-    return {
-      type: actionTypes.GET_PRODUCTS_SUCCESS,
-      payload: products
-    }
-  };
-
-  let getProductError = (error) => {
-    return {
-      type: actionTypes.GET_PRODUCTS_ERROR,
-      error: true,
-      payload: error
-    }
-  };
-
-  let fetchProducts = () => {
+    
+  function fetchProducts() {
     return dispatch => {
-      dispatch(getProductsRequest());
+      dispatch(fetchProductsRequest());
 
       return ProductApi
         .loadAll()
         .then(products => {
-          dispatch(getProductsSuccess(products))
+          dispatch(fetchProductsSuccess(products))
         })
         .catch(error => {
-          dispatch(getProductError(error));
+          dispatch(fetchProductsError(error));
         });
-    }
-  };
+    } 
+  }
   
-  function productsFormatter(products) {
-    let formattedProduct = [];
-
-    products.forEach(product => {
-      formattedProduct.push(product.doc)
-    });
-
-    return formattedProduct;
+  function fetchProductsRequest() {
+    return {
+      type: actionTypes.FETCH_PRODUCTS_REQUEST,
+      payload: {}
+    }
+  }
+  
+  function fetchProductsSuccess(products) {
+    return {
+      type: actionTypes.FETCH_PRODUCTS_SUCCESS,
+      payload: products
+    }
+  }
+  
+  function fetchProductsError() {
+    return {
+      type: actionTypes.FETCH_PRODUCTS_ERROR,
+      error: true,
+      payload: error
+    }  
   }
 
-  let saveProductRequest = (product) => {
-    return {
-      type: actionTypes.ADD_PRODUCT_REQUEST,
-      payload: product
-    }
-  };
-
-  let saveProductSuccess = (product) => {
-    return {
-      type: actionTypes.ADD_PRODUCT_SUCCESS,
-      payload: product
-    }
-  };
-
-  let saveProduct = (product) => {
+  function saveProduct(product) {
     return dispatch => {
       dispatch(saveProductRequest(product));
 
       return ProductApi
         .save(product)
         .then(newProduct => {
-          dispatch(selectedProductActions.resetProductSelection());
           dispatch(saveProductSuccess(newProduct));
         })
+        .then(() => {
+          dispatch(selectedProductActions.resetProductSelection());
+        })
+        .catch(error => {
+          dispatch(saveProductError(error));
+        })
     }
-  };
-
-  let removeProductRequest = (product) => {
+  }
+  
+  function saveProductRequest(product) {
     return {
-      type: actionTypes.REMOVE_PRODUCT_REQUEST,
+      type: actionTypes.SAVE_PRODUCT_REQUEST,
       payload: product
     }
-  };
-
-  let removeProductSuccess = (product) => {
+  }
+  
+  function saveProductSuccess(product) {
     return {
-      type: actionTypes.REMOVE_PRODUCT_SUCCESS,
+      type: actionTypes.SAVE_PRODUCT_SUCCESS,
       payload: product
     }
-  };
+  }
+  
+  function saveProductError(error) {
+    return {
+      type: actionTypes.SAVE_PRODUCT_ERROR,
+      error: true,
+      payload: error
+    }
+  }
 
-  let removeProduct = (product) => {
+  function removeProduct(product) {
     return dispatch => {
       dispatch(removeProductRequest(product));
 
@@ -102,50 +100,70 @@ const service = (selectedProductActions, ProductApi) => {
         .remove(product)
         .then(() => {
           dispatch(removeProductSuccess(product))
+        })
+        .catch(error => {
+          dispatch(removeProductError(error))
         });
     }
-  };
+  }
 
-  let editProductRequest = (product) => {
+  function removeProductRequest(product) {
     return {
-      type: actionTypes.EDIT_PRODUCT_REQUEST,
+      type: actionTypes.REMOVE_PRODUCT_REQUEST,
       payload: product
     }
-  };
+  }
 
-  let editProductSuccess = (product) => {
+  function removeProductSuccess(product) {
     return {
-      type: actionTypes.EDIT_PRODUCT_SUCCESS,
+      type: actionTypes.REMOVE_PRODUCT_SUCCESS,
       payload: product
     }
-  };
+  }
 
-  let editProduct = (product) => {
+  function removeProductError(error) {
+    return {
+      type: actionTypes.REMOVE_PRODUCT_ERROR,
+      error: true,
+      payload: error
+    }
+  }
+
+  function editProduct(product) {
     return dispatch => {
       dispatch(editProductRequest(product));
 
       return ProductApi
         .update(product)
         .then(updatedProduct => {
-          dispatch(selectedProductActions.resetProductSelection());
           dispatch(editProductSuccess(updatedProduct));
         })
+        .then(() => {
+          dispatch(selectedProductActions.resetProductSelection());
+        })
     };
-  };
+  }
 
-  return {
-    editProduct: editProduct,
-    fetchProducts: fetchProducts,
-    removeProduct: removeProduct,
-    saveProduct: saveProduct
+  function editProductRequest(product) {
+    return {
+      type: actionTypes.EDIT_PRODUCT_REQUEST,
+      payload: product
+    }
+  }
+
+  function editProductSuccess(product) {
+    return {
+      type: actionTypes.EDIT_PRODUCT_SUCCESS,
+      payload: product
+    }
   }
 };
 
-service
+actions
   .$inject = ['selectedProductActions', 'ProductApi'];
 
 
 export default (ngModule) => {
   ngModule
-    .service('productActions', service);
+    .service(ACTIONS_NAME, actions);
 };

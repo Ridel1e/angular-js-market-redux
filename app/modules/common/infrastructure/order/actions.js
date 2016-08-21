@@ -4,9 +4,9 @@
 
 import * as actionTypes from './action-types';
 
-const SERVICE_NAME = 'orderActions';
+const ACTIONS_NAME = 'orderActions';
 
-const service = OrderApi => {
+const actions = OrderApi => {
 
   return {
     fetchOrders: fetchOrders
@@ -52,5 +52,5 @@ const service = OrderApi => {
 
 export default (ngModule) => {
   ngModule
-    .service(SERVICE_NAME, service);
+    .service(ACTIONS_NAME, actions);
 }

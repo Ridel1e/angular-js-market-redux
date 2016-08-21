@@ -9,8 +9,6 @@ const REDUCER_NAME = 'selectedProduct';
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case actionTypes.SELECT_PRODUCT:
-      return action.payload;
-
     case actionTypes.RESET_PRODUCT_SELECTION:
       return action.payload;
 

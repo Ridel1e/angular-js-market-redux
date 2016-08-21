@@ -4,24 +4,30 @@
 
 import * as actionTypes from './action-types';
 
-let selectProduct = (product) => {
-  return {
-    type: actionTypes.SELECT_PRODUCT,
-    payload: product
-  }
-};
+const ACTIONS_NAME = 'selectedProductActions';
 
-let resetProductSelection = () => {
+const actions = () => {
   return {
-    type: actionTypes.RESET_PRODUCT_SELECTION,
-    payload: {}
+    selectProduct: selectProduct,
+    resetProductSelection: resetProductSelection
   };
+
+  function selectProduct(product) {
+    return {
+      type: actionTypes.SELECT_PRODUCT,
+      payload: product
+    }
+  }
+
+  function resetProductSelection() {
+    return {
+      type: actionTypes.RESET_PRODUCT_SELECTION,
+      payload: {}
+    };
+  }
 };
 
 export default (ngModule) => {
   ngModule
-    .constant('selectedProductActions', {
-      resetProductSelection: resetProductSelection,
-      selectProduct: selectProduct
-    })
+    .service(ACTIONS_NAME, actions)
 };

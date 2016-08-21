@@ -8,7 +8,7 @@ const REDUCER_NAME = 'products';
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-    case actionTypes.GET_PRODUCTS_SUCCESS:
+    case actionTypes.FETCH_PRODUCTS_SUCCESS:
       return action.payload;
 
     case actionTypes.REMOVE_PRODUCT_SUCCESS:
@@ -17,7 +17,7 @@ const reducer = (state = [], action) => {
           return product.id !== action.payload.id
         });
 
-    case actionTypes.ADD_PRODUCT_SUCCESS:
+    case actionTypes.SAVE_PRODUCT_SUCCESS:
       return [
         ...state,
         action.payload

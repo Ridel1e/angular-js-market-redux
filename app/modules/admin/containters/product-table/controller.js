@@ -18,6 +18,10 @@ class ProductTableController extends ContainerController {
       'amount'
     ];
 
+    this.productTableActions = [
+      'delete',
+      'edit'
+    ]
   }
 
   mapStateToThis(state) {

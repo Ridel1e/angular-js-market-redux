@@ -2,17 +2,20 @@
     <thead class="entity-table__head">
     <tr>
         <th ng-repeat="column in vm.columns">{{ column }}</th>
-        <th></th>
+        <th ng-show="vm.actions">actions</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in vm.items" class="entity-table__row"
-        ng-click="vm.selectItem({item: item})"
         ng-class="{active: vm.isSelectedItem(item)}">
         <th ng-repeat="column in vm.columns">
             {{ item[column] }}
         </th>
-        <th><i class="glyphicon glyphicon-trash entity-table__delete" ng-click="vm.removeItem({item: item})"></i></th>
+        <th ng-show="vm.actions">
+            <i class="glyphicon glyphicon-edit" ng-click="vm.selectItem({item: item})" ng-show="vm.hasAction('edit')"></i>
+            <i class="glyphicon glyphicon-trash entity-table__delete" ng-click="vm.removeItem({item: item})" ng-show="vm.hasAction('delete')"></i>
+        </th>
+
     </tr>
     </tbody>
 </table>

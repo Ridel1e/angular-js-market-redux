@@ -10,7 +10,8 @@ const container = {
   template:
   '<entity-table items="vm.state.products" ' +
     'columns="vm.productTableColumns" ' +
-    'on-item-select="vm.state.selectProduct(item)" ' +
+    'actions="vm.productTableActions" ' +
+    'on-item-select-button-click="vm.state.selectProduct(item)" ' +
     'selected-item="vm.state.selectedProduct"' +
     'on-item-remove-button-click="vm.state.removeProduct(item)"> ' +
   '</entity-table>',

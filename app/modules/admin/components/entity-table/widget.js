@@ -10,14 +10,25 @@ const component = {
   bindings: {
     columns: '<',
     items: '<',
+    actions: '<',
     removeItem: '&onItemRemoveButtonClick',
     selectedItem: '=',
-    selectItem: '&onItemSelect'
+    selectItem: '&onItemSelectButtonClick'
   },
   
   controller: function () {
+    this.hasAction = function (action) {
+      if(this.actions) {
+        return this.actions.indexOf(action) !== -1
+      }
+      return false;
+    };
+
     this.isSelectedItem = function (item) {
-      return this.selectedItem.id === item.id;
+      if(this.selectedItem !== undefined) {
+        return this.selectedItem.id === item.id;
+      }
+      return false;
     }
   },
   controllerAs: 'vm'
