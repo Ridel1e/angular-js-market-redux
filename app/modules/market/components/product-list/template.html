@@ -10,17 +10,17 @@
             <div class="col-md-3 col-md-offset-1">
                 <div class="row">
                     <div class="col-md-12">
-                        <i ng-show="product.amount > 0">in stock</i>
-                        <i ng-hide="product.amount > 0">out of stock</i>
+                        <i ng-show="vm.isInStock(product) && !vm.isInCart(product)">in stock</i>
+                        <i ng-hide="vm.isInStock(product)">out of stock</i>
                     </div>
-                    <!--<i class="product__in-cart-status">-->
-                       <!--&lt;!&ndash;ng-show="vm.isProductInCart(product)">&ndash;&gt;-->
-                        <!--already in cart-->
-                    <!--</i>-->
+                    <i class="product__in-cart-status"
+                       ng-show="vm.isInCart(product)">
+                        already in cart
+                    </i>
                     <div class="col-md-12 product__price">
                         <i class="glyphicon glyphicon-shopping-cart product__cart"
-                           ng-show="product.amount > 0"
-                           ng-click="vm.addToCart(product)">
+                           ng-show="vm.isInStock(product) && !vm.isInCart(product)"
+                           ng-click="vm.addToCart({product: product})">
                         </i>
                         <strong>
                             {{ product.price }}$

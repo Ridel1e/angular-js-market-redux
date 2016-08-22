@@ -1,0 +1,31 @@
+<div class="cart">
+    <div class="row">
+        <div class="col-md-8 cart__total-price">
+            Total Price: {{ vm.getFullPrice() }}
+        </div>
+        <div class="col-md-4 cart__total-price">
+            <button class="btn btn-primary" ng-click="vm.makeOrder()">Make Order</button>
+        </div>
+    </div>
+    <div class="row cart__products" ng-repeat="product in vm.productList">
+        <div class="product">
+            <div class="row product__name">
+                <div class="col-md-6">
+                    <strong>{{product.name}}</strong>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <i class="glyphicon glyphicon-remove product__delete" ng-click="vm.removeFromCart({index: $index})"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Price: {{product.price}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Amount: <input type="number" style="width: 40px" min="1" ng-model="product.amount" ng-change="vm.changeProductAmount({amount: product.amount, index: $index})">
+                </div>
+            </div>
+        </div>
+    </div>

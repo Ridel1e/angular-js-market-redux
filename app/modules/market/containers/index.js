@@ -3,7 +3,9 @@
  */
 
 import showcaseProductList from './showcase-product-list';
+import showcaseCart from './showcase-cart';
 
 export default (ngModule) => {
   showcaseProductList(ngModule);
+  showcaseCart(ngModule);
 }

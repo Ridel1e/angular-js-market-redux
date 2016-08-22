@@ -20,6 +20,14 @@ const routes = ($stateProvider) => {
             .connect(null, productActions)(actions);
 
           return actions.fetchProducts();
+        }],
+
+        cart: ['cartActions', '$ngRedux', function (cartActions, $ngRedux) {
+          let actions = {};
+          $ngRedux
+            .connect(null, cartActions)(actions);
+
+          return actions.fetchCart();
         }]
       }
     });

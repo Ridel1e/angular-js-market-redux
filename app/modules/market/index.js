@@ -7,6 +7,9 @@ import module from './module';
 import routes from './routes';
 routes(module);
 
+import infrastructure from './infrastructure';
+infrastructure(module);
+
 import containers from './containers';
 containers(module);
 

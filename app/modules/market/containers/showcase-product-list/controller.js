@@ -5,19 +5,19 @@
 import ContainerController from 'helpers/container.controller';
 
 class ShowcaseProductListController extends ContainerController {
-  constructor($ngRedux, $scope, productActions) {
-    super($ngRedux, $scope, productActions);
-
+  constructor($ngRedux, $scope, cartActions) {
+    super($ngRedux, $scope, cartActions);
   }
 
   mapStateToThis(state) {
     return {
-      products: state.products
+      products: state.products,
+      cart: state.cart
     }
   }
 }
 
 ShowcaseProductListController
-  .$inject = ['$ngRedux', '$scope', 'productActions'];
+  .$inject = ['$ngRedux', '$scope', 'cartActions'];
 
 export default ShowcaseProductListController;
