@@ -10,6 +10,7 @@ const component = {
   bindings: {
     productList: '<',
     changeProductAmount: '&onProductAmountChange',
+    makeOrder: '&onMakeOrderButtonClick',
     removeFromCart: '&onRemoveButtonClick'
   },
 

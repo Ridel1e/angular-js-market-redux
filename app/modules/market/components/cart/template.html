@@ -4,7 +4,7 @@
             Total Price: {{ vm.getFullPrice() }}
         </div>
         <div class="col-md-4 cart__total-price">
-            <button class="btn btn-primary" ng-click="vm.makeOrder()">Make Order</button>
+            <button class="btn btn-primary" ng-click="vm.makeOrder({productList: vm.productList, totalPrice: vm.getFullPrice()})">Make Order</button>
         </div>
     </div>
     <div class="row cart__products" ng-repeat="product in vm.productList">

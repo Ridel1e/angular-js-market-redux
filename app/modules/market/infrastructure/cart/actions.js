@@ -11,7 +11,8 @@ const actions = ($localStorage) => {
     addToCart: addToCart,
     changeProductAmount: changeProductAmount,
     fetchCart: fetchCart,
-    removeFromCart: removeFromCart
+    removeFromCart: removeFromCart,
+    resetCart: resetCart
   };
 
   function addToCart(product) {
@@ -62,6 +63,17 @@ const actions = ($localStorage) => {
       dispatch({
         type: actionsTypes.FETCH_CART,
         payload: cart
+      })
+    }
+  }
+
+  function resetCart() {
+    return dispatch => {
+      delete $localStorage.cart;
+
+      dispatch({
+        type: actionsTypes.RESET_CART,
+        payload: []
       })
     }
   }

@@ -5,8 +5,12 @@
 import ContainerController from 'helpers/container.controller';
 
 class ShowcaseCartController extends ContainerController {
-  constructor($ngRedux, $scope, cartActions) {
-    super($ngRedux, $scope, cartActions);
+  constructor($ngRedux, $scope, cartActions, orderActions) {
+    super($ngRedux, $scope, {
+      changeProductAmount: cartActions.changeProductAmount,
+      removeFromCart: cartActions.removeFromCart,
+      saveOrder: orderActions.saveOrder
+    });
   }
 
   mapStateToThis(state) {
@@ -20,6 +24,6 @@ class ShowcaseCartController extends ContainerController {
 }
 
 ShowcaseCartController
-  .$inject =['$ngRedux', '$scope', 'cartActions'];
+  .$inject =['$ngRedux', '$scope', 'cartActions', 'orderActions'];
 
 export default ShowcaseCartController;

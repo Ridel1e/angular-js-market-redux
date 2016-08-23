@@ -6,10 +6,11 @@ import * as actionTypes from './action-types';
 
 const ACTIONS_NAME = 'orderActions';
 
-const actions = OrderApi => {
+const actions = (OrderApi, cartActions) => {
 
   return {
-    fetchOrders: fetchOrders
+    fetchOrders: fetchOrders,
+    saveOrder: saveOrder
   };
 
   function fetchOrders() {
@@ -29,7 +30,7 @@ const actions = OrderApi => {
 
   function fetchOrdersRequest() {
     return {
-      type: actionTypes.FETCH_ORDERS_REQEST,
+      type: actionTypes.FETCH_ORDERS_REQUEST,
       payload: {}
     }
   }
@@ -48,7 +49,55 @@ const actions = OrderApi => {
       payload: error
     }
   }
+
+  function saveOrder(productList, totalPrice) {
+    return dispatch => {
+      let order = {
+        productList: productList,
+        totalPrice: totalPrice
+      };
+
+      dispatch(saveOrderRequest(order));
+
+      return OrderApi
+        .save(order)
+        .then(newOrder => {
+          dispatch(saveOrderSuccess(newOrder));
+        })
+        .then(() => {
+          dispatch(cartActions.resetCart());
+        })
+        .catch(error => {
+          dispatch(saveOrderError(error));
+        })
+    }
+  }
+
+  function saveOrderRequest(order) {
+    return {
+      type: actionTypes.SAVE_ORDER_REQUEST,
+      payload: order
+    }
+  }
+
+  function saveOrderSuccess(order) {
+    return {
+      type: actionTypes.SAVE_ORDER_SUCCESS,
+      payload: order
+    }
+  }
+
+  function saveOrderError(error) {
+    return {
+      type: actionTypes.SAVE_ORDER_ERROR,
+      error: true,
+      payload: error
+    }
+  }
 };
+
+actions
+  .$inject = ['OrderApi', 'cartActions'];
 
 export default (ngModule) => {
   ngModule

@@ -33,6 +33,7 @@ const reducer = (state = [], action) => {
         });
 
     case actionsTypes.FETCH_CART:
+    case actionsTypes.RESET_CART:  
       return action.payload;
 
     default:

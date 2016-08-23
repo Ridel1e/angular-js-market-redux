@@ -10,7 +10,8 @@ const container = {
   template:
   '<cart product-list="vm.state.cart"' +
     'on-remove-button-click="vm.state.removeFromCart(index)"' +
-    'on-product-amount-change="vm.state.changeProductAmount(amount, index)">' +
+    'on-product-amount-change="vm.state.changeProductAmount(amount, index)"' +
+    'on-make-order-button-click="vm.state.saveOrder(productList, totalPrice)">' +
   '</cart>',
 
   controller: controller,
