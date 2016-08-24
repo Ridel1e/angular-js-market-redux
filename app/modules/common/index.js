@@ -4,6 +4,9 @@
 
 import module from './module';
 
+import services from './services';
+services(module);
+
 import components from './components';
 components(module);
 

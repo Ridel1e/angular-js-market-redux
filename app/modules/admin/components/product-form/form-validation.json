@@ -1,0 +1,25 @@
+[
+  {
+    "fieldName": "productName",
+    "rules": [{
+      "name": "required"
+    }, {
+      "name": "minlength",
+      "data": 5
+    }, {
+      "name": "maxlength",
+      "data": 12
+    }]
+  }, {
+  "fieldName": "productDescription",
+  "rules": [{
+    "name": "required"
+  }, {
+    "name": "minlength",
+    "data": 15
+  }, {
+    "name": "maxlength",
+    "data": 50
+  }]
+}
+]

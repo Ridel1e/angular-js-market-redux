@@ -9,6 +9,7 @@ const CONTAINER_NAME = 'selectedProductForm';
 const container = {
   template:
   '<product-form selected-product="vm.state.selectedProduct"' +
+    'set-form-validation="vm.setFormValidation(form, scheme)"' +
     'on-save-button-click="vm.state.saveProduct(product)"' +
     'on-edit-button-click="vm.state.editProduct(product)"' +
     'on-cancel-button-click="vm.state.resetSelection()">' +
