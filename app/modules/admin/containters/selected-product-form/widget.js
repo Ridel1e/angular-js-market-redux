@@ -2,14 +2,14 @@
  * Created by ridel1e on 19/08/16.
  */
 
-import controller from './controller';
+import controller from "./controller";
 
 const CONTAINER_NAME = 'selectedProductForm';
 
 const container = {
   template:
   '<product-form selected-product="vm.state.selectedProduct"' +
-    'set-form-validation="vm.setFormValidation(form, scheme)"' +
+    'bind-form="vm.bindForm(formName, form)"' +
     'on-save-button-click="vm.state.saveProduct(product)"' +
     'on-edit-button-click="vm.state.editProduct(product)"' +
     'on-cancel-button-click="vm.state.resetSelection()">' +

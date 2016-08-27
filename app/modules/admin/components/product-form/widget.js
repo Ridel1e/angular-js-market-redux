@@ -2,8 +2,6 @@
  * Created by ridel1e on 19/08/16.
  */
 
-import formScheme from './form-validation.json';
-
 const COMPONENT_NAME = 'productForm';
 
 const component = {
@@ -14,16 +12,17 @@ const component = {
     saveProduct: '&onSaveButtonClick',
     editProduct: '&onEditButtonClick',
     cancel: '&onCancelButtonClick',
-    setFormValidation: '&setFormValidation'
+    bindForm: '&bindForm'
   },
 
   controller: ['$timeout', function ($timeout) {
     $timeout(() =>{
-      this.setFormValidation({
-        form: this.productForm,
-        scheme: formScheme
-      })
-    }, 0);
+      this.bindForm({
+        formName: 'productForm',
+        form: this.productForm
+      });
+    });
+    
     
     this.selectedProductIsEmpty = function () {
       return this.selectedProduct.id === undefined;

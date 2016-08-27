@@ -2,17 +2,17 @@
  * Created by ridel1e on 19/08/16.
  */
 
-import ContainerController from 'helpers/container.controller';
+import ContainerController from "helpers/container.controller";
 
 class SelectedProductFormController extends ContainerController {
-  constructor($ngRedux, $scope, productActions, selectedProductActions, formValidator) {
+  constructor($ngRedux, $scope, productActions, selectedProductActions, ngReduxForm) {
     super($ngRedux, $scope, {
       saveProduct: productActions.saveProduct,
       editProduct: productActions.editProduct,
       resetSelection: selectedProductActions.resetProductSelection
     });
 
-    this.setFormValidation = formValidator.setFormValidation;
+    this.bindForm = ngReduxForm.connect;
   }
 
   mapStateToThis(state) {
@@ -23,6 +23,6 @@ class SelectedProductFormController extends ContainerController {
 }
 
 SelectedProductFormController
-  .$inject = ['$ngRedux', '$scope', 'productActions', 'selectedProductActions', 'formValidator'];
+  .$inject = ['$ngRedux', '$scope', 'productActions', 'selectedProductActions', 'ngReduxForm'];
 
 export default SelectedProductFormController;

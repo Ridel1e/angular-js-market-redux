@@ -2,13 +2,19 @@
  * Created by ridel1e on 15/08/16.
  */
 
-const config = ($ngReduxProvider, reducersCombiner, router, products, orders, selectedProduct, cart, loggerCreator, thunkMiddleware) => {
+import productFormValidation from "../admin/components/product-form/form-validation.json";
+
+const config = ($ngReduxProvider, ngReduxFormProvider, reducersCombiner, router, products, orders, selectedProduct, cart, loggerCreator, thunkMiddleware) => {
+
+  let productFormFields = ['productName', 'productDescription', 'productPrice', 'productAmount'];
+
   let rootReducer = reducersCombiner.combineReducers({
     router: router,
     products: products,
     orders: orders,
     selectedProduct: selectedProduct,
-    cart: cart
+    cart: cart,
+    productForm: ngReduxFormProvider.createFormReducer('productForm', productFormFields, productFormValidation)
   });
   
   let loggerMiddleware = loggerCreator
@@ -21,6 +27,7 @@ const config = ($ngReduxProvider, reducersCombiner, router, products, orders, se
 config
   .$inject = [
     '$ngReduxProvider',
+    'ngReduxFormProvider',
     'reducersCombiner',
     'router',
     'products',
